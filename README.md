@@ -110,7 +110,6 @@
 </div>
 
 <script>
-    // 10일 주기 동기부여 명언 리스트 (짐퀵, 뇌가소성 이론 기반)
     const quotes = [
         { title: "Day 1: 뇌가소성의 힘", text: "뇌는 고정된 벽돌이 아니라 플라스틱과 같습니다. 새로운 언어를 학습하는 순간, 당신의 뇌세포는 새로운 지도를 그리며 물리적으로 변화합니다." },
         { title: "Day 2: 짐 퀵의 한계 초월", text: "당신의 기억력이나 지능은 정해져 있지 않습니다. '못한다'는 내면의 목소리를 지우고 '어떻게 할 수 있을까?'라는 질문으로 뇌를 깨우세요." },
@@ -126,10 +125,9 @@
 
     function initPlanner() {
         const now = new Date();
-        const dayOfWeek = now.getDay(); // 0: 일, 1: 월, ..., 6: 토
+        const dayOfWeek = now.getDay();
         const plannerContent = document.getElementById('planner-content');
 
-        // 주말인 경우 (토요일=6, 일요일=0)
         if (dayOfWeek === 0 || dayOfWeek === 6) {
             plannerContent.innerHTML = `
                 <h1>주말 충전 모드 🌿</h1>
@@ -142,12 +140,9 @@
             return;
         }
 
-        // 평일인 경우 (월-금)
         const dayTimestamp = Math.floor(now.getTime() / (1000 * 60 * 60 * 24));
         const quoteIndex = dayTimestamp % quotes.length;
         const todayQuote = quotes[quoteIndex];
-
-        // 격일 루틴 구분 (홀수날/짝수날)
         const isEvenDay = now.getDate() % 2 === 0;
 
         let routineHTML = `
